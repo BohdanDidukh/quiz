@@ -1,0 +1,448 @@
+@use "sass:math";
+
+// Common
+//###########################################################################################################//
+.Container {
+  max-width: rem($maxWidthContainer);
+  box-sizing: content-box;
+  margin: 0 auto;
+  padding: 0 rem(math.div($containerPadding, 2));
+
+  @media (max-width: $mobile) {
+    padding-left: rem(math.div($containerPadding, 4));
+    padding-right: rem(math.div($containerPadding, 4));
+  }
+}
+
+.Header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: rem(40);
+}
+
+.Logo {
+  font-size: rem(30);
+  span {
+    color: $accentColor;
+    font-weight: bold;
+  }
+}
+.Title {
+  font-size: rem(40);
+  text-align: center;
+  max-width: rem(500);
+  line-height: 130%;
+  letter-spacing: -0.8px;
+}
+.PageTitle {
+  max-width: rem(900);
+  font-size: rem(50);
+  line-height: 130%;
+  letter-spacing: -0.8px;
+}
+.HomeButton {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: rem(200);
+  height: rem(50);
+  font-weight: 700;
+  border: #fff 1px solid;
+  border-radius: rem(10);
+}
+.NavigationLink {
+  font-size: rem(22);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: rem(15);
+  &.active {
+    color: $accentColor;
+  }
+}
+//###########################################################################################################//
+//Animation
+//###########################################################################################################//
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+//###########################################################################################################//
+//Home Page
+//###########################################################################################################//
+.Hero {
+  text-align: center;
+  height: 100vh;
+  &__title {
+    margin-top: rem(170);
+    display: flex;
+    justify-content: space-around;
+  }
+  &__subtitle {
+    margin-top: rem(30);
+    display: flex;
+    justify-content: space-around;
+  }
+  &__action {
+    display: flex;
+    justify-content: space-around;
+    margin-top: rem(75);
+  }
+}
+
+.HeroTitle {
+  max-width: rem(900);
+  @include adaptiveValue("font-size", 50, 36);
+  line-height: 130%;
+  letter-spacing: -0.8px;
+  span {
+    color: $accentColor;
+    font-weight: bold;
+  }
+}
+
+.HeroSubtitle {
+  max-width: rem(500);
+  font-size: rem(20);
+  line-height: 160%;
+  opacity: 0.8;
+}
+.LuckyButton {
+  padding: rem(12) rem(50);
+  border-radius: rem(20);
+  background-color: $accentColor;
+  &__label {
+    font-size: rem(20);
+    font-weight: 600;
+  }
+  &__hint {
+    margin-top: rem(10);
+    font-size: rem(12);
+    font-style: italic;
+  }
+}
+.QuizCategories {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: rem(50) 0;
+  min-height: rem(500);
+}
+.CategoriesList {
+  display: flex;
+  flex-direction: column;
+  margin-top: rem(50);
+  gap: rem(20);
+  &__message {
+    text-align: center;
+    font-size: rem(26);
+    margin-top: rem(30);
+  }
+}
+.CategoryCard {
+  display: flex;
+  justify-content: space-between;
+  padding: rem(20);
+  @include adaptiveValue("width", 600, 280);
+  border-radius: rem(20);
+  background-color: $cardColor;
+  &__name {
+    @include adaptiveValue("font-size", 24, 18);
+    max-width: rem(400);
+  }
+}
+//###########################################################################################################//
+//Quiz Page
+//###########################################################################################################//
+
+.QuizPage {
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  &__card {
+    margin-top: rem(50);
+  }
+  &__title {
+    margin-top: rem(60);
+  }
+  &__message {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: rem(100);
+    text-align: center;
+  }
+}
+
+.QuestionCard {
+  @include adaptiveValue("width", 900, 280);
+  min-height: rem(450);
+  background-color: #18212b;
+  border-radius: rem(25);
+  &__message {
+    text-align: center;
+    font-size: rem(26);
+    line-height: 160%;
+    max-width: rem(700);
+  }
+  &__home {
+    display: flex;
+    justify-content: center;
+    margin-top: rem(40);
+  }
+}
+
+.QuestionCardItem {
+  padding: rem(30) rem(40);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: rem(100);
+  &.fadeIn {
+    opacity: 0;
+    animation: fade-in 0.5s ease-in-out forwards;
+  }
+  &__wrapper {
+    max-width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  &__timer {
+    font-size: rem(20);
+    margin-bottom: rem(20);
+    span {
+      color: $accentColor;
+    }
+  }
+  &__action {
+    width: rem(250);
+    &-media {
+      display: none;
+    }
+  }
+  &__info {
+    margin-right: rem(20);
+  }
+
+  &__index {
+    font-size: rem(30);
+    span {
+      font-size: rem(20);
+    }
+  }
+
+  &__question {
+    margin: rem(25) 0;
+    font-size: rem(20);
+    line-height: 160%;
+  }
+  &__finish {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: rem(200);
+    height: rem(50);
+    font-weight: 700;
+    border: #fff 1px solid;
+    border-radius: rem(10);
+  }
+
+  &__next {
+    width: rem(200);
+    height: rem(50);
+    font-weight: 700;
+    border: #fff 1px solid;
+    border-radius: rem(10);
+    &.fadeIn {
+      opacity: 0;
+      animation: fade-in 0.5s ease-in-out forwards;
+    }
+  }
+
+  &__answers {
+    height: rem(450);
+    min-width: rem(200);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: rem(30);
+    max-height: rem(350);
+  }
+
+  &__answer {
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    padding: rem(10);
+    font-weight: 700;
+    border: #fff 3px solid;
+    border-radius: rem(10);
+    transition: border 0.3s ease-in;
+    &.active {
+      border: $accentColor 3px solid;
+    }
+  }
+}
+//###########################################################################################################//
+//Result Page
+//###########################################################################################################//
+
+.ResultPage {
+  &__title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: rem(75);
+  }
+}
+.ResultCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: rem(50);
+  &__wrapper {
+    max-width: rem(500);
+    min-height: rem(300);
+    max-height: rem(600);
+    display: inline-block;
+    background-color: #18212b;
+    border-radius: rem(25);
+  }
+  &__conclusion {
+    @include adaptiveValue("font-size", 24, 18);
+    line-height: 160%;
+    text-align: center;
+    margin: rem(20);
+    margin-bottom: rem(30);
+  }
+  &__info {
+    margin: rem(30);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: rem(20);
+  }
+  &__home {
+    display: flex;
+    justify-content: center;
+    margin: rem(40) 0;
+  }
+}
+
+.ResultItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: rem(20);
+  &__info {
+    @include adaptiveValue("font-size", 20, 18);
+  }
+  &__data {
+    text-align: right;
+    @include adaptiveValue("font-size", 24, 18);
+    color: $accentColor;
+  }
+}
+//###########################################################################################################//
+//Statistic Page
+//###########################################################################################################//
+.StatisticPage {
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: rem(70);
+    text-align: center;
+  }
+  &__charts {
+    margin: rem(50) 0;
+  }
+}
+
+.Statistic {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: rem(30);
+}
+.StatisticCard {
+  margin-bottom: rem(100);
+  width: 50%;
+  &__data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: rem(10);
+    margin-top: rem(30);
+    min-height: rem(150);
+  }
+  &__message {
+    text-align: center;
+    font-size: rem(26);
+    margin-top: rem(30);
+    height: rem(300);
+  }
+}
+
+//###########################################################################################################//
+//Media
+//###########################################################################################################//
+@media (max-width: 968px) {
+  .QuestionCardItem__next-media {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .QuestionCardItem__next-media.show {
+    opacity: 1;
+  }
+  .QuestionCardItem {
+    flex-direction: column;
+    height: rem(800);
+    &__wrapper {
+      max-width: 100%;
+      flex-direction: row;
+      align-items: center;
+    }
+    &__action {
+      display: none;
+      &-media {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: rem(30);
+        height: rem(80);
+      }
+    }
+    &__finish,
+    &__next {
+      width: 100%;
+      height: rem(60);
+    }
+  }
+
+  .Statistic {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .StatisticCard {
+    width: 100%;
+  }
+}
+@media (max-width: 568px) {
+  .Logo {
+    display: none;
+  }
+  .NavigationLink {
+    @include adaptiveValue("font-size", 22, 20);
+  }
+}
